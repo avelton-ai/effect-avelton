@@ -2035,7 +2035,7 @@ const JAPANESE: &[(&str, &str, &str)] = &[
     ("help.revealLogFile", "Reveal Logging File", "ログファイルを表示"),
     ("help.discord", "Avelton support...", "Avelton サポート..."),
     ("help.reportIssue", "Provide Feedback...", "フィードバックを送信..."),
-    ("help.website", "Avelton Website", "ArtCraftウェブサイト"),
+    ("help.website", "Avelton Website", "Aveltonウェブサイト"),
     ("help.appPage", "Effect Avelton Home Page", "EffectCraftホームページ"),
     ("help.github", "Effect Avelton on GitHub", "GitHubのEffectCraft"),
     ("file.openDemoProject", "Open Demo Project", "デモプロジェクトを開く"),
