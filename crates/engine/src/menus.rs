@@ -1217,7 +1217,7 @@ Help
   Enable Logging | help.enableLogging
   Reveal Logging File | help.revealLogFile
   ---
-  Join the Avelton Discord... | help.discord
+  Avelton support... | help.discord
   Provide Feedback... | help.reportIssue
   ---
   Avelton Website | help.website

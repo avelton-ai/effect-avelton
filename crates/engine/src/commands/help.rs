@@ -31,7 +31,7 @@ fn docs(s: &mut Session, p: &Value) -> Result<Value> {
 pub fn specs() -> Vec<CommandSpec> {
     vec![
         cmd!("help.docs", "Effect Avelton Help...", [], Some("F1"), "{page?: help|scripting|expressions|effects|agents}", always, docs),
-        cmd!("help.discord", "Join the Avelton Discord...", ["Help"], None, "{}", always, |s, _| open(s, links::DISCORD.into())),
+        cmd!("help.discord", "Avelton support...", ["Help"], None, "{}", always, |s, _| open(s, links::DISCORD.into())),
         cmd!("help.website", "Avelton Website", ["Help"], None, "{}", always, |s, _| open(s, links::WEBSITE.into())),
         cmd!("help.appPage", "Effect Avelton Home Page", ["Help"], None, "{}", always, |s, _| open(s, links::APP_PAGE.into())),
         cmd!("help.github", "Effect Avelton on GitHub", ["Help"], None, "{}", always, |s, _| open(s, links::GITHUB.into())),
