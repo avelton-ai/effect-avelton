@@ -131,13 +131,9 @@ mkdir -p "$STAGE"
 ditto "$APP" "$STAGE/Effect Avelton.app"
 ln -s /Applications "$STAGE/Applications"
 # Finder window layout: background, icon size and positions (packaging/macos/dmg/README.md).
-# The background is rendered from its SVG (1x + 2x in one HiDPI TIFF), so no bitmap is committed.
-command -v resvg >/dev/null || { echo "resvg not found (cargo install resvg --locked --version 0.48.1)" >&2; exit 1; }
+# Copy the attributed, reproducible Avelton background included with the sources.
 mkdir -p "$STAGE/.background"
-resvg --skip-system-fonts -w 660 "$HERE/dmg/background.svg" "$WORK/background.png"
-resvg --skip-system-fonts -w 1320 "$HERE/dmg/background.svg" "$WORK/background@2x.png"
-sips -s dpiWidth 144 -s dpiHeight 144 "$WORK/background@2x.png" >/dev/null
-tiffutil -cathidpicheck "$WORK/background.png" "$WORK/background@2x.png" -out "$STAGE/.background/background.tiff"
+cp "$HERE/dmg/background.tiff" "$STAGE/.background/background.tiff"
 cp "$HERE/dmg/dmg-layout.DS_Store" "$STAGE/.DS_Store"
 rm -f "$DMG" "$WORK/raw.dmg"
 # makehybrid + convert builds the image without attaching a device, unlike `create -srcfolder`,
