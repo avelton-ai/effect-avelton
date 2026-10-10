@@ -18,6 +18,8 @@ env:
   # Keep optimized tests while avoiding thin-LTO on every workspace test executable.
   CARGO_PROFILE_RELEASE_LTO: 'false'
   CARGO_PROFILE_RELEASE_CODEGEN_UNITS: '16'
+  # Keep performance budgets meaningful by running timed tests without competing tests.
+  RUST_TEST_THREADS: '1'
 jobs:
   quality:
     runs-on: ubuntu-24.04
