@@ -15,3 +15,10 @@ list (author, source, license) is in ATTRIBUTION.md.
 Inter (assets/fonts/Inter-*.ttf) — SIL Open Font License 1.1. See assets/fonts/OFL-Inter.txt.
 Noto Serif (assets/fonts/NotoSerif-Regular.ttf) — SIL Open Font License 1.1. See assets/fonts/OFL-NotoSerif.txt.
 JetBrains Mono (assets/fonts/JetBrainsMono-Regular.ttf) — SIL Open Font License 1.1. See assets/fonts/OFL-JetBrainsMono.txt.
+
+Avelton distribution
+Based on EffectCraft, https://github.com/storytold/effectcraft, commit 813c7c4650f0d4c805da620c8d5837c9600ad2e3.
+Original source copyrights and licences above are retained.
+Original Avelton geometric artwork: copyright 2026 Avelton contributors, MIT OR Apache-2.0.
+Inter lettering: OFL-1.1, see the bundled Inter font licence.
+Avelton is independently maintained; no endorsement by the upstream authors is implied.

@@ -1,6 +1,6 @@
-# Driving EffectCraft from agents
+# Driving Effect Avelton from agents
 
-Everything in EffectCraft is an engine command with a stable id and JSON params. Menus, shortcuts,
+Everything in Effect Avelton is an engine command with a stable id and JSON params. Menus, shortcuts,
 panel gestures, the CLI, the control channel and MCP all go through the same commands, so anything a
 user can do, an agent can do too. There are three ways in:
 
@@ -55,7 +55,7 @@ and transport errors also flush outstanding changes. Queries do not rotate the s
 A failed checkpoint adds a warning to the tool reply; the edit remains in memory and the next
 call retries. Use `save_project {path}` to a writable location before disconnecting if warned.
 
-Each server has its own folder under `<config directory>/EffectCraft Auto-Save/MCP/` (or
+Each server has its own folder under `<config directory>/Effect Avelton Auto-Save/MCP/` (or
 `<custom Auto-Save folder>/MCP/`). The maximum-version setting applies within that folder.
 `--autosave` enables these checkpoints regardless of the desktop's Auto-Save toggle and interval;
 it reads settings without writing desktop preferences, shortcuts or crash-recovery state.
@@ -154,7 +154,7 @@ Things that tripped up a long agent-driven session (a multi-scene 3D piece built
   `run_script`'s `setValueAtTime` and `keyTime` use comp time, as in After Effects. On a layer that
   doesn't start at 0, such as a nested comp placed later, subtract the layer's start time from the
   comp time before keying (unstretched layers), or set the keys from `run_script`
-  ([#257](https://github.com/storytold/effectcraft/issues/257)).
+  ([#257](https://github.com/avelton-ai/effect-avelton/issues/257)).
 - **Moving a layer in time.** `execute_command layer.timing {"layers":["Scene 2"],"start":5.1}` sets
   the start time in comp seconds and moves the in and out points with it.
 - **Loops in scripts.** `run_script` can call any engine command with `app.run(id, params)`, for
@@ -167,7 +167,7 @@ Things that tripped up a long agent-driven session (a multi-scene 3D piece built
 - **Environment light.** `layer.newLight` also accepts `"kind":"Environment"`: an equirectangular
   image that metallic surfaces reflect. Set its `lightOptions/source` to a footage, comp or solid
   layer by layer id; with no source it uses the comp's Environment Layer (`layer.environment`)
-  ([#261](https://github.com/storytold/effectcraft/issues/261)).
+  ([#261](https://github.com/avelton-ai/effect-avelton/issues/261)).
 
 ### Cookbook (from end-to-end QA)
 

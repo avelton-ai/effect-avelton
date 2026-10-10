@@ -21,7 +21,7 @@ for the full catalog. Each tool has a title and read-only, destructive, idempote
 open-world hints. Tools with an optional output path are conservatively annotated as file writers.
 
 Unknown top-level tool argument keys return JSON-RPC `-32602` naming the key and accepted
-arguments. EffectCraft already rejects unknown engine command parameters; that behaviour is
+arguments. Effect Avelton already rejects unknown engine command parameters; that behaviour is
 preserved. Tool failures (including escaped panics) return `isError: true`. Malformed JSON
 returns `-32700` with a null id and the session keeps serving. The MCP backend owns its session
 without a mutex; the engine's render-job mutexes already recover poisoned locks.

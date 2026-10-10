@@ -1,8 +1,7 @@
-asset:        favicon.svg
-title:        EffectCraft web app icon (favicon)
-author:       EffectCraft contributors (drawing by the project owner in ArtCraft)
-source:       original work
-license:      MIT OR Apache-2.0
-license-file: assets/app-icon/LICENSE.txt
-added:        2026-10-02 by EffectCraft contributors (Claude agent, app icon)
-notes:        Copy of assets/app-icon/effectcraft-small.svg (the lighter vector trace of the app icon). Replaces the earlier code-drawn split-square mark.
+asset: apps/effectcraft-web/web/favicon.svg
+title: Avelton favicon
+author: Avelton contributors
+source: Original geometry from avelton-infrastructure scripts/creative/rebrand.py; Inter OFL-1.1
+license: MIT OR Apache-2.0
+license-file: LICENSE-MIT
+added: 2026-10-10

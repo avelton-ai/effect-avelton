@@ -15,7 +15,7 @@
   timestamp server, ...). Optional overrides: WINDOWS_TIMESTAMP_URL, SIGNTOOL (path to signtool.exe).
 
 .EXAMPLE
-  pwsh packaging/windows/sign.ps1 dist/effectcraft.exe dist/Effectcraft.msi
+  pwsh packaging/windows/sign.ps1 dist/effectcraft.exe dist/Effect Avelton.msi
 #>
 param(
   [Parameter(Mandatory = $true, ValueFromRemainingArguments = $true)]
@@ -55,7 +55,7 @@ if (-not $haveCert -and -not $haveAzure) {
 }
 
 $script:SignTool = Find-SignTool
-$common = @('sign', '/v', '/fd', 'SHA256', '/td', 'SHA256', '/d', 'EffectCraft', '/du', 'https://github.com/storytold/effectcraft')
+$common = @('sign', '/v', '/fd', 'SHA256', '/td', 'SHA256', '/d', 'Effect Avelton', '/du', 'https://github.com/avelton-ai/effect-avelton')
 $tmp = Join-Path ([IO.Path]::GetTempPath()) "effectcraft-sign-$PID"
 New-Item -ItemType Directory -Force -Path $tmp | Out-Null
 

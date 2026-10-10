@@ -1,4 +1,4 @@
-# Contributing to EffectCraft
+# Contributing to Effect Avelton
 
 Thanks for helping. Please read [AGENTS.md](AGENTS.md) first: its rules on assets and clean-room
 work apply to everyone, people and AI agents alike, and they are not negotiable.
@@ -42,5 +42,5 @@ cargo xtask ci                           # what every commit must pass
 
 ## Talk to us
 
-Questions, ideas and bug reports are welcome on [Discord](https://discord.gg/artcraft) and in
+Questions, ideas and bug reports are welcome on [Discord](https://github.com/avelton-ai/effect-avelton/issues) and in
 GitHub issues.

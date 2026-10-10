@@ -1,59 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  EffectCraft MSI (WiX Toolset v5: `dotnet tool install -g wix`). Built by package.ps1:
+  Effect Avelton MSI (WiX Toolset v5: `dotnet tool install -g wix`). Built by package.ps1:
 
     wix build effectcraft.wxs -arch x64 -d Version=1.2.3 -d BinDir=... -d IconPath=... -o out.msi
 
-  Per-machine install into Program Files, a Start Menu shortcut, `.pcraft` owned by EffectCraft,
-  and EffectCraft offered under "Open with" for PSD/PSB and the image formats it reads (without
+  Per-machine install into Program Files, a Start Menu shortcut, `.pcraft` owned by Effect Avelton,
+  and Effect Avelton offered under "Open with" for PSD/PSB and the image formats it reads (without
   taking over the user's default app for them).
 -->
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
   <Package
-      Name="EffectCraft"
-      Manufacturer="Learning Machines LLC"
+      Name="Effect Avelton"
+      Manufacturer="Avelton"
       Version="$(var.Version)"
-      UpgradeCode="AACA8593-C6ED-40A8-BA6C-CB325D8529F9"
+      UpgradeCode="4D5269C4-3426-50D3-8CCE-1CC0EDA11D92"
       Scope="perMachine"
       Compressed="yes"
       Language="1033">
-    <SummaryInformation Description="EffectCraft motion graphics and visual effects" Manufacturer="Learning Machines LLC" />
+    <SummaryInformation Description="Effect Avelton motion graphics and visual effects" Manufacturer="Avelton" />
     <!-- Same-version upgrades let successive pre-releases of one X.Y.Z replace each other
          (MSI versions are numeric, so 1.2.3-rc.1 and 1.2.3-rc.2 are both 1.2.3). -->
     <MajorUpgrade AllowSameVersionUpgrades="yes"
-        DowngradeErrorMessage="A newer version of EffectCraft is already installed." />
+        DowngradeErrorMessage="A newer version of Effect Avelton is already installed." />
     <MediaTemplate EmbedCab="yes" CompressionLevel="high" />
 
     <Icon Id="EffectcraftIcon.ico" SourceFile="$(var.IconPath)" />
     <Property Id="ARPPRODUCTICON" Value="EffectcraftIcon.ico" />
-    <Property Id="ARPURLINFOABOUT" Value="https://getartcraft.com/apps/effectcraft" />
-    <Property Id="ARPURLUPDATEINFO" Value="https://getartcraft.com/apps/effectcraft" />
-    <Property Id="ARPHELPLINK" Value="https://discord.gg/artcraft" />
+    <Property Id="ARPURLINFOABOUT" Value="https://effect.avelton.online" />
+    <Property Id="ARPURLUPDATEINFO" Value="https://effect.avelton.online" />
+    <Property Id="ARPHELPLINK" Value="https://github.com/avelton-ai/effect-avelton/issues" />
 
     <StandardDirectory Id="ProgramFiles6432Folder">
-      <Directory Id="INSTALLFOLDER" Name="EffectCraft" />
+      <Directory Id="INSTALLFOLDER" Name="Effect Avelton" />
     </StandardDirectory>
     <StandardDirectory Id="ProgramMenuFolder" />
 
-    <Feature Id="Main" Title="EffectCraft" Level="1">
+    <Feature Id="Main" Title="Effect Avelton" Level="1">
       <ComponentGroupRef Id="EffectcraftFiles" />
     </Feature>
   </Package>
 
   <Fragment>
     <ComponentGroup Id="EffectcraftFiles" Directory="INSTALLFOLDER">
-      <Component Id="EffectcraftApp" Guid="BA719860-95FE-4154-B265-47006B8E9083">
-        <File Id="EffectcraftExe" Source="$(var.BinDir)\effectcraft.exe" KeyPath="yes">
-          <Shortcut Id="StartMenuShortcut" Directory="ProgramMenuFolder" Name="EffectCraft"
-              Description="EffectCraft motion graphics and visual effects" WorkingDirectory="INSTALLFOLDER" Advertise="yes"
+      <Component Id="EffectcraftApp" Guid="11751BEB-34E6-5C0C-830D-9517ADD1BCB1">
+        <File Id="EffectcraftExe" Source="$(var.BinDir)\effect-avelton.exe" KeyPath="yes">
+          <Shortcut Id="StartMenuShortcut" Directory="ProgramMenuFolder" Name="Effect Avelton"
+              Description="Effect Avelton motion graphics and visual effects" WorkingDirectory="INSTALLFOLDER" Advertise="yes"
               Icon="EffectcraftIcon.ico" IconIndex="0" />
         </File>
 
-        <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\App Paths\effectcraft.exe" Value="[#EffectcraftExe]" Type="string" />
+        <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\App Paths\effect-avelton.exe" Value="[#EffectcraftExe]" Type="string" />
       </Component>
 
       <Component Id="EffectcraftCli">
-        <File Id="EffectcraftCliExe" Source="$(var.BinDir)\effectcraft-cli.exe" KeyPath="yes" />
+        <File Id="EffectcraftCliExe" Source="$(var.BinDir)\effect-avelton-cli.exe" KeyPath="yes" />
+      </Component>
+      <Component Id="AveltonNotices" Guid="2242DF9D-6F5E-5414-A331-A7AC60C8EFB1">
+        <File Id="AveltonNotice0" Source="$(sys.SOURCEFILEDIR)..\..\NOTICE" />
+        <File Id="AveltonNotice1" Source="$(sys.SOURCEFILEDIR)..\..\avelton.json" />
+        <File Id="AveltonNotice2" Source="$(sys.SOURCEFILEDIR)..\..\assets\fonts\OFL-Inter.txt" />
+        <File Id="AveltonNotice3" Source="$(sys.SOURCEFILEDIR)..\..\assets\fonts\OFL-JetBrainsMono.txt" />
+        <File Id="AveltonNotice4" Source="$(sys.SOURCEFILEDIR)..\..\assets\fonts\OFL-NotoSerif.txt" />
       </Component>
     </ComponentGroup>
   </Fragment>

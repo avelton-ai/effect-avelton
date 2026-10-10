@@ -1,4 +1,4 @@
-//! EffectCraft text engine.
+//! Effect Avelton text engine.
 //!
 //! - [`fonts`], [`sfnt`], [`layout`]: font database, shaping (harfrust), bidi, line breaking and
 //!   paragraph layout (shared design with FilmCraft's text engine).

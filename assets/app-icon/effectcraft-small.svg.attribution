@@ -1,8 +1,8 @@
-asset:        effectcraft-small.svg
-title:        EffectCraft app icon, light vector
-author:       EffectCraft contributors (drawing by the project owner in ArtCraft)
-source:       original work
-license:      MIT OR Apache-2.0
-license-file: assets/app-icon/LICENSE.txt
-added:        2026-10-02 by EffectCraft contributors (Claude agent, app icon)
-notes:        The same drawing vectorised at 1024 px with craftrules vectorize_tile.py, about 350 KB, for places where size matters.
+asset: assets/app-icon/effectcraft-small.svg
+title: Avelton original geometric identity
+author: Avelton contributors
+source: https://github.com/avelton-ai/avelton-infrastructure/blob/main/scripts/creative/rebrand.py; Inter lettering from bundled OFL-1.1 font
+license: MIT OR Apache-2.0
+license-file: LICENSE-MIT
+added: 2026-10-10
+notes: Original artwork generated from geometry, replacing upstream brand artwork.

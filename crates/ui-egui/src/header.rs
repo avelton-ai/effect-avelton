@@ -27,8 +27,8 @@ pub fn show(app: &mut EffectcraftApp, ui: &mut egui::Ui, rect: Rect) {
     let brand = Rect::from_min_size(pos2(x, cy - 12.0), vec2(24.0, 24.0));
     paint_logo(&p, brand);
     let bresp = ui.interact(brand, egui::Id::new("brand"), Sense::click());
-    app.auto.add("header.about", brand, "About EffectCraft");
-    if bresp.on_hover_text(tr("About EffectCraft")).clicked() {
+    app.auto.add("header.about", brand, "About Effect Avelton");
+    if bresp.on_hover_text(tr("About Effect Avelton")).clicked() {
         app.dialog = Some(Dialog::About);
     }
     x += 32.0;
@@ -182,14 +182,14 @@ pub fn show(app: &mut EffectcraftApp, ui: &mut egui::Ui, rect: Rect) {
     let dc = Color32::from_rgb(0x58, 0x65, 0xf2);
     p.rect_filled(discord, 13.0, if dresp.hovered() { dc.gamma_multiply(1.2) } else { dc });
     icons::paint(&p, Rect::from_center_size(pos2(discord.min.x + 16.0, cy), vec2(14.0, 14.0)), Icon::Chat, Color32::WHITE);
-    p.text(pos2(discord.min.x + 28.0, cy), Align2::LEFT_CENTER, tr("Discord"), Tokens::semibold(12.0), Color32::WHITE);
-    app.auto.add("header.discord", discord, "Join the ArtCraft Discord");
-    if dresp.on_hover_text(tr("Join the ArtCraft community on Discord")).clicked() {
+    p.text(pos2(discord.min.x + 28.0, cy), Align2::LEFT_CENTER, tr("Support"), Tokens::semibold(12.0), Color32::WHITE);
+    app.auto.add("header.discord", discord, "Avelton support");
+    if dresp.on_hover_text(tr("Join the Avelton community on Discord")).clicked() {
         let _ = app.session.execute("help.discord", json!({}));
     }
     rx = discord.min.x - 6.0;
     for (id, icon, tip, cmd) in
-        [("hdr-github", Icon::Code, "EffectCraft on GitHub", "help.github"), ("hdr-web", Icon::Globe, "EffectCraft on getartcraft.com", "help.appPage")]
+        [("hdr-github", Icon::Code, "Effect Avelton on GitHub", "help.github"), ("hdr-web", Icon::Globe, "Effect Avelton on getartcraft.com", "help.appPage")]
     {
         let r = Rect::from_min_max(pos2(rx - 26.0, cy - 13.0), pos2(rx, cy + 13.0));
         if widgets::icon_button(ui, r, icon, false, &t, egui::Id::new(id)).on_hover_text(tip).clicked() {
@@ -564,20 +564,20 @@ pub fn color_popup(ui: &mut egui::Ui, id: egui::Id, pos: egui::Pos2, c: &mut [f3
     changed
 }
 
-/// The ArtCraft mark as supplied in `docs/brand` (the README's and getartcraft.com's logo; used
-/// unmodified, see `docs/brand/LICENSE-brand.txt`).
-static ARTCRAFT_MARK: &[u8] = include_bytes!("../../../docs/brand/artcraft-mark.png");
+/// The Avelton mark as supplied in `docs/brand` (the README's and getartcraft.com's logo; used
+/// unmodified, see `docs/brand/LICENSE.txt`).
+static ARTCRAFT_MARK: &[u8] = include_bytes!("../../../docs/brand/avelton-mark.png");
 
-/// The ArtCraft mark in `r` (decoded once into a mipmapped texture, so it stays crisp from the
+/// The Avelton mark in `r` (decoded once into a mipmapped texture, so it stays crisp from the
 /// 24 px Tools bar to the About dialog). Nothing is drawn if it can't be decoded.
 pub fn paint_logo(p: &egui::Painter, r: Rect) {
     let ctx = p.ctx();
-    let id = egui::Id::new("artcraft-mark");
+    let id = egui::Id::new("avelton-mark");
     let tex = ctx.data(|d| d.get_temp::<Option<egui::TextureHandle>>(id)).unwrap_or_else(|| {
         let tex = image::load_from_memory_with_format(ARTCRAFT_MARK, image::ImageFormat::Png).ok().map(|img| {
             let img = img.to_rgba8();
             let ci = egui::ColorImage::from_rgba_unmultiplied([img.width() as usize, img.height() as usize], img.as_raw());
-            ctx.load_texture("artcraft-mark", ci, egui::TextureOptions::LINEAR.with_mipmap_mode(Some(egui::TextureFilter::Linear)))
+            ctx.load_texture("avelton-mark", ci, egui::TextureOptions::LINEAR.with_mipmap_mode(Some(egui::TextureFilter::Linear)))
         });
         ctx.data_mut(|d| d.insert_temp(id, tex.clone()));
         tex
