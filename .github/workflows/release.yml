@@ -96,6 +96,7 @@ jobs:
     - uses: Swatinem/rust-cache@v2
       with:
         key: release-windows-${{ matrix.arch }}
+        cache-on-failure: true
     - name: Install WiX
       shell: pwsh
       run: dotnet tool install --global wix --version 5.0.2
@@ -149,6 +150,7 @@ jobs:
     - uses: Swatinem/rust-cache@v2
       with:
         key: release-linux-${{ matrix.arch }}
+        cache-on-failure: true
     - name: Build and package (AppImage, deb, rpm, tar.gz)
       run: packaging/linux/package.sh
     - name: Check the packages
@@ -185,6 +187,7 @@ jobs:
     - uses: Swatinem/rust-cache@v2
       with:
         key: release-web
+        cache-on-failure: true
     - name: Install wasm-bindgen CLI
       run: |
         # Must match the wasm-bindgen version in Cargo.lock exactly (cargo xtask web checks it).
@@ -299,6 +302,7 @@ jobs:
     - uses: Swatinem/rust-cache@v2
       with:
         key: release-macos-${{ matrix.target }}
+        cache-on-failure: true
     - name: Build native slice
       run: cargo build --release --locked -p effectcraft -p effectcraft-cli --target "${{ matrix.target }}"
     - uses: actions/upload-artifact@v4
