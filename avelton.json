@@ -1,0 +1,16 @@
+{
+  "name": "Effect Avelton",
+  "slug": "effect-avelton",
+  "domain": "effect.avelton.online",
+  "app_id": "online.avelton.effect",
+  "version": "0.7.0-avelton.1",
+  "upstream": {
+    "repository": "storytold/effectcraft",
+    "commit": "813c7c4650f0d4c805da620c8d5837c9600ad2e3",
+    "installer_upgrade_code": "AACA8593-C6ED-40A8-BA6C-CB325D8529F9"
+  },
+  "release": {
+    "unsigned": true,
+    "channel": "alpha"
+  }
+}

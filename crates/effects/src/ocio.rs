@@ -372,7 +372,7 @@ pub fn parse_spimtx(text: &str) -> Option<FileXform> {
     }
     let mut m = [0.0; 16];
     let mut offset = [0.0; 4];
-    for (r, row) in v.chunks_exact(4).enumerate() {
+    for (r, row) in v.as_chunks::<4>().0.iter().enumerate() {
         m[r * 4..r * 4 + 3].copy_from_slice(&row[..3]);
         offset[r] = row[3] / 65535.0;
     }
@@ -689,7 +689,7 @@ pub const VIEWS: &[&str] = &["Standard", "Tone Mapped", "Raw"];
 
 /// Configuration popup: the built-in config, or a custom `.ocio` file (Config File: a path or
 /// the config's text; spaces chosen by name, see [`crate::ocio_config`]).
-pub const CONFIGS: &[&str] = &["Built-in (EffectCraft minimal)", "Custom (.ocio file)"];
+pub const CONFIGS: &[&str] = &["Built-in (Effect Avelton minimal)", "Custom (.ocio file)"];
 
 /// Built-in looks: CDLs applied in ACEScct.
 pub fn looks() -> Vec<(&'static str, Cdl)> {
@@ -818,7 +818,7 @@ fn display_view_names(pr: &crate::Params) -> (&str, &str) {
 }
 
 /// Effect Controls' warning for effect `id`: a custom OCIO configuration that can't be read, has
-/// no such colour space, display or view, or uses transforms EffectCraft can't apply (colours
+/// no such colour space, display or view, or uses transforms Effect Avelton can't apply (colours
 /// pass through those steps, #410). `None` when the effect renders as asked.
 pub fn warning(id: &str, pr: &crate::Params) -> Option<String> {
     let xf = match custom_xf(id, pr) {
@@ -1471,7 +1471,7 @@ pub fn specs() -> Vec<EffectSpec> {
             "OCIO Look Transform",
             cc,
             vec![
-                p("config", "Configuration", Value::Enum(0), popup(&["Built-in (EffectCraft minimal)"])),
+                p("config", "Configuration", Value::Enum(0), popup(&["Built-in (Effect Avelton minimal)"])),
                 space_param("source", "Source", acescg),
                 space_param("destination", "Destination", acescg),
                 p("look", "Look", Value::Enum(0), popup(&look_opts)),

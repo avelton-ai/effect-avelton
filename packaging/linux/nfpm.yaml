@@ -3,7 +3,7 @@
 # exports VERSION and NFPM_ARCH.
 #
 #   nfpm package -f packaging/linux/nfpm.yaml -p deb -t dist/release/
-name: effectcraft
+name: effect-avelton
 arch: ${NFPM_ARCH}
 platform: linux
 version: ${VERSION}
@@ -13,8 +13,8 @@ release: 1
 section: graphics
 priority: optional
 maintainer: ${EFFECTCRAFT_MAINTAINER}
-vendor: Learning Machines LLC
-homepage: https://getartcraft.com/apps/effectcraft
+vendor: Avelton
+homepage: https://effect.avelton.online
 license: MIT OR Apache-2.0
 description: |-
   Open-source motion graphics and visual effects compositor.
@@ -58,11 +58,11 @@ overrides:
       - xdg-desktop-portal
 
 contents:
-  - src: ${STAGE}/usr/bin/effectcraft
-    dst: /usr/bin/effectcraft
+  - src: ${STAGE}/usr/bin/effect-avelton
+    dst: /usr/bin/effect-avelton
     file_info: { mode: 0755 }
-  - src: ${STAGE}/usr/bin/effectcraft-cli
-    dst: /usr/bin/effectcraft-cli
+  - src: ${STAGE}/usr/bin/effect-avelton-cli
+    dst: /usr/bin/effect-avelton-cli
     file_info: { mode: 0755 }
   - src: ${STAGE}/usr/share/
     dst: /usr/share/

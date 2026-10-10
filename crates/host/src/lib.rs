@@ -95,8 +95,8 @@ pub fn session() -> Session {
     }
 }
 
-/// The platform config directory for EffectCraft (`EFFECTCRAFT_CONFIG_DIR` overrides):
-/// `~/Library/Application Support/EffectCraft` (macOS), `%APPDATA%\EffectCraft` (Windows),
+/// The platform config directory for Effect Avelton (`EFFECTCRAFT_CONFIG_DIR` overrides):
+/// `~/Library/Application Support/Effect Avelton` (macOS), `%APPDATA%\Effect Avelton` (Windows),
 /// `$XDG_CONFIG_HOME/effectcraft` or `~/.config/effectcraft` (Linux and others).
 pub fn config_dir() -> Option<std::path::PathBuf> {
     use std::path::PathBuf;
@@ -105,10 +105,10 @@ pub fn config_dir() -> Option<std::path::PathBuf> {
     }
     let home = || std::env::var_os("HOME").map(PathBuf::from);
     if cfg!(target_os = "macos") {
-        return home().map(|h| h.join("Library/Application Support/EffectCraft"));
+        return home().map(|h| h.join("Library/Application Support/Effect Avelton"));
     }
     if cfg!(target_os = "windows") {
-        return std::env::var_os("APPDATA").map(|a| PathBuf::from(a).join("EffectCraft"));
+        return std::env::var_os("APPDATA").map(|a| PathBuf::from(a).join("Effect Avelton"));
     }
     std::env::var_os("XDG_CONFIG_HOME").map(PathBuf::from).or_else(|| home().map(|h| h.join(".config"))).map(|c| c.join("effectcraft"))
 }

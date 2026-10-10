@@ -1,6 +1,6 @@
-# Where EffectCraft falls short
+# Where Effect Avelton falls short
 
-An honest assessment of how far EffectCraft is from being a real replacement for After Effects,
+An honest assessment of how far Effect Avelton is from being a real replacement for After Effects,
 and the work that closes the gap. This document is meant for contributors and agents choosing
 what to work on. The [ROADMAP](../ROADMAP.md) summarises it; [parity.md](parity.md) is the
 feature-by-feature checklist it builds on.
@@ -17,7 +17,7 @@ and the breadth is real: every one of After Effects' effects exists by name, alo
 menus, panels, 3D, tracking, expressions, scripting and export.
 
 It does not answer the question users care about: *can someone who uses After Effects for a living
-do real work in EffectCraft?* Nobody has measured that yet. Our best estimate is **≈ 30–50%**,
+do real work in Effect Avelton?* Nobody has measured that yet. Our best estimate is **≈ 30–50%**,
 limited mainly by four things: projects we can't open, behaviour nobody has checked against After
 Effects, reliability on platforms other than macOS, and the third-party plug-ins professional
 projects depend on.
@@ -53,7 +53,7 @@ The most important missing piece: it turns every other estimate here into a meas
   blend modes, track mattes, each effect at default and at non-default settings, text animators,
   expressions, 3D, motion blur, time remapping.
 - Drive After Effects through ExtendScript (see CLAUDE.md) to record property values at sampled
-  times and render reference frames; render the same projects in EffectCraft headless.
+  times and render reference frames; render the same projects in Effect Avelton headless.
 - Compare values exactly and frames with a perceptual metric; publish a per-feature fidelity
   score and a fidelity column in parity.md.
 - Clean room: After Effects output stays local in `plan/aftereffects/ref/` (gitignored). Commit
@@ -71,11 +71,11 @@ The most important missing piece: it turns every other estimate here into a meas
 - Run the headless snapshot and control-channel checks on Linux (X11 and Wayland) and Windows, not
   only macOS. Interactions that only fail with real input (docking drags, viewer pan, drag-and-drop
   import, inline rename) need scripted input tests.
-- Regression evidence for [#66](https://github.com/storytold/effectcraft/issues/66): scripted
+- Regression evidence for [#66](https://github.com/avelton-ai/effect-avelton/issues/66): scripted
   pointer tests in `ui_viewer` and `ui_text_edit`, checked headlessly on Linux, cover viewer clicks,
   marquee selection and text picking when layers are hidden or excluded by solo. They also check
   hidden/locked solo layers and solo layers outside their active time range.
-- Regression evidence for [#67](https://github.com/storytold/effectcraft/issues/67): scripted
+- Regression evidence for [#67](https://github.com/avelton-ai/effect-avelton/issues/67): scripted
   input tests in `ui_project_delete`, checked headlessly on Linux, cover Delete/Backspace on
   Project items, multiple selection and undo. They check that an unrelated Timeline layer stays,
   an empty Project selection does nothing, viewer focus still deletes layers, and typing or
@@ -117,14 +117,14 @@ The most important missing piece: it turns every other estimate here into a meas
   `effect_points_move_into_effect_space_unless_left_at_their_default` /
   `puppet_paint_liquify_and_roto_data_move_into_effect_space` (effects); see
   [architecture.md](architecture.md) §3 for what the conversion keeps.
-- Regression evidence for the interface items of [#227](https://github.com/storytold/effectcraft/issues/227),
+- Regression evidence for the interface items of [#227](https://github.com/avelton-ai/effect-avelton/issues/227),
   checked headlessly on Windows: `spacebar_taps_preview_and_held_spacebar_pans_the_viewer` and
   `spacebar_drag_scrolls_the_time_graph` (Spacebar previews on its release, held it is the Hand
   tool), `right_click_in_effect_controls_shows_the_effect_menu`,
   `project_items_dropped_on_new_comp_make_a_composition` and
   `dragging_over_layer_switches_sets_them_all`.
 - Regression evidence for the shape layer items of
-  [#227](https://github.com/storytold/effectcraft/issues/227), checked headlessly on Windows:
+  [#227](https://github.com/avelton-ai/effect-avelton/issues/227), checked headlessly on Windows:
   `shape_tools_draw_into_the_selected_shape_layer` and `ui_viewer`
   `shape_tool_draws_into_the_selected_shape_layer` (a shape tool adds a group to the selected
   shape layer), `shape_contents_copy_cut_and_paste_between_shape_layers` and
@@ -191,10 +191,10 @@ The most important missing piece: it turns every other estimate here into a meas
 
 ### G8. Plug-in ecosystem
 
-- After Effects SDK plug-ins cannot run in EffectCraft. Our own WebAssembly plug-in API exists
+- After Effects SDK plug-ins cannot run in Effect Avelton. Our own WebAssembly plug-in API exists
   ([plugins.md](plugins.md)). Grow it: documentation, examples, and original effects that cover
   what the most common third-party plug-ins are used for (particles, glows, 3D objects, sabers).
-- Features that come from third parties in After Effects are extensions in EffectCraft too, built
+- Features that come from third parties in After Effects are extensions in Effect Avelton too, built
   on the same extension points as After Effects: scripts, ScriptUI panels and effect plug-ins
   ([plugins.md](plugins.md#extension-points-compared-with-after-effects) compares them). ScriptUI
   panels in the user's ScriptUI Panels folder are listed in the Window menu, dock like any panel

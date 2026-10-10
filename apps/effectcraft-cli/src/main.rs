@@ -1,28 +1,28 @@
-//! EffectCraft headless CLI: one-shot agent commands, frame rendering and the MCP server.
+//! Effect Avelton headless CLI: one-shot agent commands, frame rendering and the MCP server.
 //!
 //! ```text
-//! effectcraft-cli info                                        project + engine summary
-//! effectcraft-cli commands [--filter TEXT] [--enabled]        list engine commands
-//! effectcraft-cli exec <command-id> [--params JSON]           run one command
-//! effectcraft-cli exec --list [--filter TEXT] [--schemas]     list engine commands (as `commands`)
-//! effectcraft-cli run <id> <json> [<id> <json> …]             run several commands in order
-//! effectcraft-cli props <comp> <layer> [--flat] [--time S]    a layer's property tree (with paths)
-//! effectcraft-cli get <comp> <layer> <path> [--time S]        read a property
-//! effectcraft-cli set <comp> <layer> <path> <value> [--time S] [--expression E]
-//! effectcraft-cli render-frame [--comp C] [--time S|--frame N] [--max-side PX|--scale K] [--out F.png] [--transparent]
-//! effectcraft-cli render [--comp C] --out FILE [--format h264|hevc|av1|prores|webm|png|jpeg|tiff|exr|gif|wav|aiff] [--start S] [--end S]
+//! effect-avelton-cli info                                        project + engine summary
+//! effect-avelton-cli commands [--filter TEXT] [--enabled]        list engine commands
+//! effect-avelton-cli exec <command-id> [--params JSON]           run one command
+//! effect-avelton-cli exec --list [--filter TEXT] [--schemas]     list engine commands (as `commands`)
+//! effect-avelton-cli run <id> <json> [<id> <json> …]             run several commands in order
+//! effect-avelton-cli props <comp> <layer> [--flat] [--time S]    a layer's property tree (with paths)
+//! effect-avelton-cli get <comp> <layer> <path> [--time S]        read a property
+//! effect-avelton-cli set <comp> <layer> <path> <value> [--time S] [--expression E]
+//! effect-avelton-cli render-frame [--comp C] [--time S|--frame N] [--max-side PX|--scale K] [--out F.png] [--transparent]
+//! effect-avelton-cli render [--comp C] --out FILE [--format h264|hevc|av1|prores|webm|png|jpeg|tiff|exr|gif|wav|aiff] [--start S] [--end S]
 //!     [--work-area] [--fps N] [--resolution full|half|third|quarter|K] [--quality best|draft] [--channels rgb|rgba]
 //!     [--jpeg-quality N] [--bitrate KBPS] [--prores proxy|lt|standard|hq|4444|4444xq] [--audio auto|on|off]
 //!     [--profile main|main10] [--level auto|4.1] [--rate-control bitrate|quality] [--video-quality 1-100]
 //!     [--keyint FRAMES] [--webm-codec vp9|av1] [--audio-bitrate KBPS] [--opus-app audio|voice]
 //!     (a relative --out is relative to the working directory; --queue outputs follow the project's own settings)
-//! effectcraft-cli render F.ecproj --queue                    render the project's Render Queue
-//! effectcraft-cli bench [--comp C] [--time S] [--scale K] [--n N] [--play N] [--gpu [--adv3d]]   render timings
+//! effect-avelton-cli render F.ecproj --queue                    render the project's Render Queue
+//! effect-avelton-cli bench [--comp C] [--time S] [--scale K] [--n N] [--play N] [--gpu [--adv3d]]   render timings
 //!     (--gpu: CPU vs GPU ms/frame for every comp at Full and Half)
-//! effectcraft-cli bench --ops [--small] [--layers N] [--comps N] [--footage N]   everyday-operation timings
+//! effect-avelton-cli bench --ops [--small] [--layers N] [--comps N] [--footage N]   everyday-operation timings
 //!     on a large generated project (open, save, auto-save, undo/redo, timeline, Project panel)
-//! effectcraft-cli script FILE.jsx [F.ecproj] | --eval CODE    run an After Effects-style script
-//! effectcraft-cli mcp [--autosave | --bridge PORT]            MCP server on stdio
+//! effect-avelton-cli script FILE.jsx [F.ecproj] | --eval CODE    run an After Effects-style script
+//! effect-avelton-cli mcp [--autosave | --bridge PORT]            MCP server on stdio
 //!
 //! Project:  --project F.ecproj (or a positional *.ecproj) | --demo | --empty   (default: demo; mcp: empty)
 //! Saving:   --save (back to --project) | --save-as F.ecproj
@@ -75,7 +75,7 @@ fn write_line(text: std::fmt::Arguments) {
     if let Err(e) = r {
         let _ = STDOUT_FAILED.set(e.kind());
         if e.kind() != std::io::ErrorKind::BrokenPipe {
-            note!("effectcraft-cli: cannot write to stdout: {e}");
+            note!("effect-avelton-cli: cannot write to stdout: {e}");
         }
     }
 }
@@ -85,7 +85,7 @@ fn stdout_broken() -> bool {
     STDOUT_FAILED.get().is_some_and(|k| *k != std::io::ErrorKind::BrokenPipe)
 }
 
-const USAGE: &str = "usage: effectcraft-cli <info|commands|exec|run|props|get|set|render-frame|render|script|mcp> [args] [--json]
+const USAGE: &str = "usage: effect-avelton-cli <info|commands|exec|run|props|get|set|render-frame|render|script|mcp> [args] [--json]
   info                                     project + engine summary
   commands [--filter TEXT] [--enabled]     list engine commands
   exec <command-id> [--params JSON]        run one engine command (exec --list: list them, as `commands`)
@@ -249,7 +249,7 @@ fn value_arg(s: &str) -> Value {
 fn main() {
     let raw: Vec<String> = std::env::args().skip(1).collect();
     if matches!(raw.first().map(String::as_str), Some("--version" | "-V" | "version")) {
-        say!("effectcraft-cli {}", env!("CARGO_PKG_VERSION"));
+        say!("effect-avelton-cli {}", env!("CARGO_PKG_VERSION"));
         return;
     }
     if raw.is_empty() || raw.iter().any(|a| a == "-h" || a == "--help") {
@@ -273,14 +273,14 @@ fn main() {
             if json_out {
                 say!("{}", json!({"error": e}));
             }
-            note!("effectcraft-cli {cmd}: {e}");
+            note!("effect-avelton-cli {cmd}: {e}");
             std::process::exit(1);
         }
     }
 }
 
 fn fail_usage(e: &str) -> ! {
-    note!("effectcraft-cli: {e}\n{USAGE}");
+    note!("effect-avelton-cli: {e}\n{USAGE}");
     std::process::exit(2)
 }
 
@@ -438,7 +438,7 @@ fn run(cmd: &str, args: &Args, json_out: bool) -> Result<(), Failure> {
                 emit(&info, true);
             } else {
                 say!(
-                    "EffectCraft {} ({}), {} commands, {} effects",
+                    "Effect Avelton {} ({}), {} commands, {} effects",
                     info["version"].as_str().unwrap_or(""),
                     info["mode"].as_str().unwrap_or(""),
                     info["commands"],
@@ -1052,7 +1052,7 @@ fn adv3d_bench_comp(p: &mut effectcraft_engine::project::Project) -> Option<Item
     }
     add(p, &comp, LayerSource::Text, &|l| {
         l.switches.three_d = true;
-        let doc = TextDoc { text: "EffectCraft".into(), size: 180.0, fill: [0.95, 0.75, 0.2, 1.0], apply_fill: true, ..Default::default() };
+        let doc = TextDoc { text: "Effect Avelton".into(), size: 180.0, fill: [0.95, 0.75, 0.2, 1.0], apply_fill: true, ..Default::default() };
         set(l, "text/sourceText", Value::Text(Box::new(doc)));
         let mut next = 900_000u64;
         l.props.children.push(build::extrusion_geometry_options(&mut Ids(&mut next)).into());

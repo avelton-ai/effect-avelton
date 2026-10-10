@@ -7,13 +7,13 @@
   <key>CFBundleDevelopmentRegion</key>
   <string>en</string>
   <key>CFBundleDisplayName</key>
-  <string>EffectCraft</string>
+  <string>Effect Avelton</string>
   <key>CFBundleName</key>
-  <string>EffectCraft</string>
+  <string>Effect Avelton</string>
   <key>CFBundleExecutable</key>
-  <string>EffectCraft</string>
+  <string>Effect Avelton</string>
   <key>CFBundleIdentifier</key>
-  <string>ai.storyteller.effectcraft</string>
+  <string>online.avelton.effect</string>
   <key>CFBundleInfoDictionaryVersion</key>
   <string>6.0</string>
   <key>CFBundlePackageType</key>
@@ -29,7 +29,7 @@
   <key>EffectCraftBuildCommit</key>
   <string>@BUILD_SHA@</string>
   <key>CFBundleIconFile</key>
-  <string>EffectCraft</string>
+  <string>Effect Avelton</string>
   <key>LSApplicationCategoryType</key>
   <string>public.app-category.graphics-design</string>
   <!-- Must match MACOSX_DEPLOYMENT_TARGET in package.sh. Big Sur is the first release on
@@ -45,21 +45,21 @@
   <key>NSHumanReadableCopyright</key>
   <string>Copyright © the EffectCraft authors. MIT OR Apache-2.0.</string>
 
-  <!-- Effectcraft's own format. -->
+  <!-- Effect Avelton's own format. -->
   <key>UTExportedTypeDeclarations</key>
   <array>
     <dict>
       <key>UTTypeIdentifier</key>
       <string>ai.storyteller.effectcraft.document</string>
       <key>UTTypeDescription</key>
-      <string>EffectCraft Document</string>
+      <string>Effect Avelton Document</string>
       <key>UTTypeConformsTo</key>
       <array>
         <string>public.data</string>
         <string>public.image</string>
       </array>
       <key>UTTypeIconFile</key>
-      <string>EffectCraft</string>
+      <string>Effect Avelton</string>
       <key>UTTypeTagSpecification</key>
       <dict>
         <key>public.filename-extension</key>
