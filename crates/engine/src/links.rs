@@ -11,17 +11,19 @@ pub const ISSUES: &str = "https://github.com/avelton-ai/effect-avelton/issues";
 
 /// Sibling apps of the Avelton family: (name, what it is, GitHub repo, app page).
 pub const SIBLINGS: &[(&str, &str)] = &[
-    ("PhotoCraft", "photocraft"),
-    ("VectorCraft", "vectorcraft"),
-    ("FilmCraft", "filmcraft"),
-    ("LightCraft", "lightcraft"),
-    ("PdfCraft", "pdfcraft"),
-    ("DesignCraft", "designcraft"),
+    ("Photo Avelton", "photocraft"),
+    ("Vector Avelton", "vectorcraft"),
+    ("Film Avelton", "filmcraft"),
+    ("Light Avelton", "lightcraft"),
+    ("PDF Avelton", "pdfcraft"),
+    ("Design Avelton", "designcraft"),
 ];
 
 pub fn github_of(slug: &str) -> String {
-    format!("https://github.com/storytold/{slug}")
+    let product = slug.strip_suffix("craft").unwrap_or(slug);
+    format!("https://github.com/avelton-ai/{product}-avelton")
 }
 pub fn page_of(slug: &str) -> String {
-    format!("https://avelton.online/apps/{slug}")
+    let product = slug.strip_suffix("craft").unwrap_or(slug);
+    format!("https://{product}.avelton.online")
 }

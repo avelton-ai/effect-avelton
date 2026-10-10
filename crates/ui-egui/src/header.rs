@@ -189,7 +189,7 @@ pub fn show(app: &mut EffectcraftApp, ui: &mut egui::Ui, rect: Rect) {
     }
     rx = discord.min.x - 6.0;
     for (id, icon, tip, cmd) in
-        [("hdr-github", Icon::Code, "Effect Avelton on GitHub", "help.github"), ("hdr-web", Icon::Globe, "Effect Avelton on getartcraft.com", "help.appPage")]
+        [("hdr-github", Icon::Code, "Effect Avelton on GitHub", "help.github"), ("hdr-web", Icon::Globe, "Effect Avelton on avelton.online", "help.appPage")]
     {
         let r = Rect::from_min_max(pos2(rx - 26.0, cy - 13.0), pos2(rx, cy + 13.0));
         if widgets::icon_button(ui, r, icon, false, &t, egui::Id::new(id)).on_hover_text(tip).clicked() {
@@ -564,7 +564,7 @@ pub fn color_popup(ui: &mut egui::Ui, id: egui::Id, pos: egui::Pos2, c: &mut [f3
     changed
 }
 
-/// The Avelton mark as supplied in `docs/brand` (the README's and getartcraft.com's logo; used
+/// The Avelton mark as supplied in `docs/brand` (the README's and avelton.online's logo; used
 /// unmodified, see `docs/brand/LICENSE.txt`).
 static ARTCRAFT_MARK: &[u8] = include_bytes!("../../../docs/brand/avelton-mark.png");
 

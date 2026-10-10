@@ -70,7 +70,7 @@ fn main() -> eframe::Result {
     effectcraft_engine::logging::install();
     effectcraft_engine::logging::install_panic_hook();
     let Some(Args { control_port, files, demo, home }) = parse_args(std::env::args().skip(1), std::env::var("EFFECTCRAFT_CONTROL_PORT").ok()) else {
-        println!("effectcraft {}", env!("CARGO_PKG_VERSION"));
+        println!("effect-avelton {}", env!("CARGO_PKG_VERSION"));
         return Ok(());
     };
     // The font menus list the installed fonts: read their names while the window opens.

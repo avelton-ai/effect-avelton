@@ -272,7 +272,7 @@ fn rail_ui(app: &mut EffectcraftApp, ui: &mut egui::Ui, p: &egui::Painter, rail:
     // Community links at the foot (below the pages when the window is short).
     let links = [
         (Icon::Chat, "Avelton support", "help.discord"),
-        (Icon::Globe, "getartcraft.com", "help.website"),
+        (Icon::Globe, "avelton.online", "help.website"),
         (Icon::Globe, "Effect Avelton home page", "help.appPage"),
         (Icon::Code, "Effect Avelton on GitHub", "help.github"),
     ];

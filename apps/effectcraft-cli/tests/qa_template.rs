@@ -1,5 +1,5 @@
 //! M13.15 scenario 5 — Essential Graphics through the CLI: a MOGRT-style template built by an
-//! After Effects-style script (`effectcraft-cli script`), its controls changed with commands on
+//! After Effects-style script (`effect-avelton-cli script`), its controls changed with commands on
 //! an instance, rendered, exported as a template and imported into a fresh project.
 
 use std::path::PathBuf;
